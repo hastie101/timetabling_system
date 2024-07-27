@@ -1,0 +1,21 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Custom styles
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.btn {
+    margin-right: 5px;
+}
