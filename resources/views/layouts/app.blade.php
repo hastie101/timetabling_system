@@ -4,7 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timetabling System</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom inline styles -->
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .table {
+            margin-top: 20px;
+        }
+
+        .btn {
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -18,11 +33,11 @@
                 <li class="nav-item"><a class="nav-link" href="{{ route('instructors.index') }}">Instructors</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('course-instructors.index') }}">Course Instructors</a></li>
                 @guest
-                <li><a href="{{ route('login') }}">Login</a></li>
-                <li><a href="{{ route('register') }}">Register</a></li>
-            @else
-                <li>
-                    <a href="{{ route('logout') }}"
+                <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Logout
                     </a>
@@ -30,7 +45,7 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-            @endguest
+                @endguest
             </ul>
         </div>
     </nav>
@@ -38,10 +53,13 @@
     <main>
         <div class="container mt-4">
             @yield('content')
-    </div>
+        </div>
     </main>
     
-    <script src="{{ asset('js/app.js') }}"></script>
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     @stack('scripts')
 </body>
 </html>
