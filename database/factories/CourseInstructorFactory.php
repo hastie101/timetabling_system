@@ -14,10 +14,17 @@ class CourseInstructorFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
-    {
-        return [
-            //
-        ];
-    }
+    public function seedCourseInstructors() {  
+        $courseInstructors = [  
+            ['CourseID' => 1, 'InstructorID' => 1],  
+            ['CourseID' => 2, 'InstructorID' => 2],  
+            ['CourseID' => 3, 'InstructorID' => 3],  
+        ];  
+
+        $stmt = $this->pdo->prepare("INSERT INTO CourseInstructors (CourseID, InstructorID) VALUES (:CourseID, :InstructorID)");  
+        
+        foreach ($courseInstructors as $courseInstructor) {  
+            $stmt->execute($courseInstructor);  
+        }  
+    }  
 }

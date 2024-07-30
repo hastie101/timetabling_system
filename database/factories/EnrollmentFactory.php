@@ -14,10 +14,18 @@ class EnrollmentFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
-    {
-        return [
-            //
-        ];
+    public function seedEnrollment() {  
+        $enrollments = [  
+            ['StudentID' => 1, 'ClassID' => 1],  
+            ['StudentID' => 1, 'ClassID' => 2],  
+            ['StudentID' => 2, 'ClassID' => 1],  
+            ['StudentID' => 3, 'ClassID' => 3],  
+        ];  
+
+        $stmt = $this->pdo->prepare("INSERT INTO Enrollment (StudentID, ClassID) VALUES (:StudentID, :ClassID)");  
+        
+        foreach ($enrollments as $enrollment) {  
+            $stmt->execute($enrollment);  
+        }  
     }
 }

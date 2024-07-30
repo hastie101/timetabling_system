@@ -14,10 +14,19 @@ class ClassesFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
-    {
-        return [
-            //
-        ];
-    }
+    public function seedClasses() {  
+        $classes = [  
+            ['ClassName' => 'Mathematics 101'],  
+            ['ClassName' => 'Physics 101'],  
+            ['ClassName' => 'Chemistry 101'],  
+            ['ClassName' => 'Biology 101'],  
+            ['ClassName' => 'Computer Science 101'],  
+        ];  
+
+        $stmt = $this->pdo->prepare("INSERT INTO Classes (ClassName) VALUES (:ClassName)");  
+        
+        foreach ($classes as $class) {  
+            $stmt->execute($class);  
+        }  
+    }  
 }

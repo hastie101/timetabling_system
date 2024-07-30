@@ -13,9 +13,12 @@ class CourseInstructorController extends Controller
         return view('course_instructors.index', compact('courseInstructors'));
     }
 
-    public function create()
-    {
-        return view('course_instructors.create');
+    public function create()  
+    {  
+        $courses = Course::all(); // Assuming you have a Course model  
+        $instructors = Instructor::all(); // Assuming you have an Instructor model  
+        
+        return view('course_instructors.create', compact('courses', 'instructors'));  
     }
 
     public function store(Request $request)
@@ -65,4 +68,5 @@ class CourseInstructorController extends Controller
         return redirect()->route('course_instructors.index')
                          ->with('success', 'Course instructor removed successfully.');
     }
+    
 }

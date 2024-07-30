@@ -14,10 +14,18 @@ class StudentFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
-    {
-        return [
-            //
-        ];
-    }
+    public function seedStudents() {  
+        $students = [  
+            ['StudentName' => 'John Doe', 'Email' => 'john.doe@example.com'],  
+            ['StudentName' => 'Jane Smith', 'Email' => 'jane.smith@example.com'],  
+            ['StudentName' => 'Alice Johnson', 'Email' => 'alice.johnson@example.com'],  
+            ['StudentName' => 'Bob Brown', 'Email' => 'bob.brown@example.com'],  
+        ];  
+
+        $stmt = $this->pdo->prepare("INSERT INTO Students (StudentName, Email) VALUES (:StudentName, :Email)");  
+        
+        foreach ($students as $student) {  
+            $stmt->execute($student);  
+        }  
+    }  
 }
