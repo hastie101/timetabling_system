@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClassSchedule extends Model
 {
-    protected $primaryKey = ['ClassID', 'CourseID', 'TimeSlot'];
+    use HasFactory;
+
+    protected $primaryKey = ['ClassID', 'CourseID', 'TimeSlot', 'InstructorID', 'DayOfWeek'];
     public $incrementing = false;
-    protected $fillable = ['ClassID', 'CourseID', 'TimeSlot'];
-    protected $table = 'class_schedule';
+    protected $fillable = ['ClassID', 'CourseID', 'TimeSlot', 'InstructorID', 'DayOfWeek'];
+    protected $table = 'class_schedules';
 
     public function class()
     {
@@ -26,8 +28,4 @@ class ClassSchedule extends Model
     {
         return $this->belongsTo(Instructor::class, 'InstructorID');
     }
-
-    // use HasFactory;
-
-    // protected $table = 'class_schedules';
 }

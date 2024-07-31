@@ -14,7 +14,7 @@ class UpdateClassScheduleTable extends Migration
                 $table->string('DayOfWeek')->after('TimeSlot'); // Add column if it doesn't exist
             }
             if (!Schema::hasColumn('class_schedules', 'InstructorID')) {
-                $table->unsignedInteger('InstructorID')->after('TimeSlot')->nullable(); // Ensure correct type and position
+                $table->unsignedBigInteger('InstructorID')->after('TimeSlot')->nullable(); // Ensure correct type and position
             }
             
             // Add foreign key constraint if it doesn't already exist
@@ -39,4 +39,4 @@ class UpdateClassScheduleTable extends Migration
             }
         });
     }
-}
+};
