@@ -23,7 +23,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url('/') }}">Timetabling System</a>
+        <a class="navbar-brand" href="{{ url('/timetable') }}">Timetabling System</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"><a class="nav-link" href="{{ route('students.index') }}">Students</a></li>
