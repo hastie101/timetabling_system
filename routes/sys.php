@@ -15,5 +15,5 @@ Route::resource('courses', CourseController::class);
 Route::resource('class-schedules', ClassScheduleController::class);
 Route::resource('enrollments', EnrollmentController::class);
 Route::resource('instructors', InstructorController::class);
-Route::resource('course-instructors', CourseInstructorController::class);
+Route::resource('course_instructors', CourseInstructorController::class);
 Route::get('/timetable', [TimetableController::class, 'index']);

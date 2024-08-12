@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\Instructor;
 use Illuminate\Http\Request;
 use App\Models\CourseInstructor;
 
@@ -13,12 +15,12 @@ class CourseInstructorController extends Controller
         return view('course_instructors.index', compact('courseInstructors'));
     }
 
-    public function create()  
-    {  
-        $courses = Course::all(); // Assuming you have a Course model  
-        $instructors = Instructor::all(); // Assuming you have an Instructor model  
+    public function create()
+    {
+        $courses = Course::all();
+        $instructors = Instructor::all();
         
-        return view('course_instructors.create', compact('courses', 'instructors'));  
+        return view('course_instructors.create', compact('courses', 'instructors'));
     }
 
     public function store(Request $request)
@@ -36,13 +38,13 @@ class CourseInstructorController extends Controller
 
     public function show($id)
     {
-        $courseInstructor = CourseInstructor::find($id);
+        $courseInstructor = CourseInstructor::findOrFail($id);
         return view('course_instructors.show', compact('courseInstructor'));
     }
 
     public function edit($id)
     {
-        $courseInstructor = CourseInstructor::find($id);
+        $courseInstructor = CourseInstructor::findOrFail($id);
         return view('course_instructors.edit', compact('courseInstructor'));
     }
 
@@ -53,7 +55,7 @@ class CourseInstructorController extends Controller
             'InstructorID' => 'required|exists:instructors,InstructorID',
         ]);
 
-        $courseInstructor = CourseInstructor::find($id);
+        $courseInstructor = CourseInstructor::findOrFail($id);
         $courseInstructor->update($request->all());
 
         return redirect()->route('course_instructors.index')
@@ -62,11 +64,10 @@ class CourseInstructorController extends Controller
 
     public function destroy($id)
     {
-        $courseInstructor = CourseInstructor::find($id);
+        $courseInstructor = CourseInstructor::findOrFail($id);
         $courseInstructor->delete();
 
         return redirect()->route('course_instructors.index')
                          ->with('success', 'Course instructor removed successfully.');
     }
-    
 }
