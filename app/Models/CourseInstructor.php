@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CourseInstructor extends Model
 {
-    protected $primaryKey = ['CourseID', 'InstructorID'];
-    public $incrementing = false;
+    use HasFactory;
+
     protected $fillable = ['CourseID', 'InstructorID'];
 
     public function course()
@@ -20,6 +20,4 @@ class CourseInstructor extends Model
     {
         return $this->belongsTo(Instructor::class, 'InstructorID', 'InstructorID');
     }
-    
-    use HasFactory;
 }

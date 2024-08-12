@@ -31,7 +31,7 @@
                 <li class="nav-item"><a class="nav-link" href="{{ route('class-schedules.index') }}">Class Schedules</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('enrollments.index') }}">Enrollments</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('instructors.index') }}">Instructors</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('course-instructors.index') }}">Course Instructors</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('course_instructors.index') }}">Course Instructors</a></li>
                 @guest
                 <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
