@@ -17,8 +17,8 @@
                 @foreach ($courseInstructors as $courseInstructor)
                     <tr>
                         <td>{{ $loop->iteration }}</td> <!-- This will generate a serial number -->
-                        <td>{{ $courseInstructor->course->name }}</td>  <!-- Assuming course has a 'name' field -->
-                        <td>{{ $courseInstructor->instructor->name }}</td>  <!-- Assuming instructor has a 'name' field -->
+                        <td>{{ $courseInstructor->course->CourseName }}</td>  <!-- Assuming course has a 'name' field -->
+                        <td>{{ $courseInstructor->instructor->InstructorName }}</td>  <!-- Assuming instructor has a 'name' field -->
                         <td>
                             <a href="{{ route('course_instructors.show', $courseInstructor->id) }}" class="btn btn-info">View</a>
                             <a href="{{ route('course_instructors.edit', $courseInstructor->id) }}" class="btn btn-warning">Edit</a>

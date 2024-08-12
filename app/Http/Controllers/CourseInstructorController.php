@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use Log;
 use App\Models\Course;
 use App\Models\Instructor;
 use Illuminate\Http\Request;
@@ -19,22 +21,31 @@ class CourseInstructorController extends Controller
     {
         $courses = Course::all();
         $instructors = Instructor::all();
-        
+
         return view('course_instructors.create', compact('courses', 'instructors'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        // Validate the request
+        $validatedData = $request->validate([
             'CourseID' => 'required|exists:courses,CourseID',
             'InstructorID' => 'required|exists:instructors,InstructorID',
         ]);
 
-        CourseInstructor::create($request->all());
+        try {
+            // Attempt to create the CourseInstructor record
+            CourseInstructor::create($validatedData);
 
-        return redirect()->route('course_instructors.index')
-                         ->with('success', 'Course instructor assigned successfully.');
+            return redirect()->route('course_instructors.index')
+                ->with('success', 'Course instructor assigned successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->withErrors('An error occurred while assigning the course instructor. Please try again.');
+        }
     }
+
+
 
     public function show($id)
     {
@@ -59,7 +70,7 @@ class CourseInstructorController extends Controller
         $courseInstructor->update($request->all());
 
         return redirect()->route('course_instructors.index')
-                         ->with('success', 'Course instructor updated successfully.');
+            ->with('success', 'Course instructor updated successfully.');
     }
 
     public function destroy($id)
@@ -68,6 +79,6 @@ class CourseInstructorController extends Controller
         $courseInstructor->delete();
 
         return redirect()->route('course_instructors.index')
-                         ->with('success', 'Course instructor removed successfully.');
+            ->with('success', 'Course instructor removed successfully.');
     }
 }
